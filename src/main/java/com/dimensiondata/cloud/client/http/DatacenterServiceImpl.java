@@ -1,15 +1,15 @@
 package com.dimensiondata.cloud.client.http;
 
-import com.dimensiondata.cloud.client.Datacenter;
+import com.dimensiondata.cloud.client.DatacenterService;
 import com.dimensiondata.cloud.client.model.DatacenterType;
 import com.dimensiondata.cloud.client.model.Datacenters;
 
-public class DatacenterImpl implements Datacenter
+public class DatacenterServiceImpl implements DatacenterService
 {
     private final HttpClient httpClient;
 
 
-    public DatacenterImpl(String baseUrl)
+    public DatacenterServiceImpl(String baseUrl)
     {
         httpClient = new HttpClient(baseUrl);
     }
