@@ -82,10 +82,10 @@ public class NetworkDomainServiceImpl implements NetworkDomainService
     }
 
     @Override
-    public ResponseType deleteNetworkDomain(String networkDomainId)
+    public ResponseType deleteNetworkDomain(String id)
     {
         return httpClient.post("network/deleteNetworkDomain",
-                Entity.xml("<deleteNetworkDomain xmlns=\"" + HttpClient.DEFAULT_NAMESPACE + "\" id=\"" + networkDomainId + "\"/>"),
+                Entity.xml("<deleteNetworkDomain xmlns=\"" + HttpClient.DEFAULT_NAMESPACE + "\" id=\"" + id + "\"/>"),
                 ResponseType.class);
     }
 }
