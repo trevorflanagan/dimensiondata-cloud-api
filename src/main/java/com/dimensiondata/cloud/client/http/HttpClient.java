@@ -88,7 +88,7 @@ public class HttpClient
         return parameters;
     }
 
-    public static Response post(WebTarget baseTarget, String path, Entity payload)
+    public static <T> T post(WebTarget baseTarget, String path, Entity payload, Class<T> responseType)
     {
         WebTarget target = baseTarget.path(API_VERSION)
                 .path(UserSession.get().getOrgId())
@@ -96,10 +96,10 @@ public class HttpClient
 
         Response response = createRequest(target).post(payload);
         UserSession.setLastResponse(response);
-        return response;
+        return response.readEntity(responseType);
     }
 
-    public Response post(String path, JAXBElement jaxbElement)
+    public <T> T post(String path, JAXBElement jaxbElement, Class<T> responseType)
     {
         try
         {
@@ -108,7 +108,7 @@ public class HttpClient
 
             StringWriter stringWriter = new StringWriter();
             marshaller.marshal(jaxbElement, stringWriter);
-            return post(path, Entity.xml(stringWriter.toString()));
+            return post(path, Entity.xml(stringWriter.toString()), responseType);
         }
         catch (JAXBException e)
         {
@@ -116,9 +116,9 @@ public class HttpClient
         }
     }
 
-    public Response post(String path, Entity payload)
+    public <T> T post(String path, Entity payload, Class<T> responseType)
     {
-        return HttpClient.post(baseTarget, path, payload);
+        return HttpClient.post(baseTarget, path, payload, responseType);
     }
 
     private static Invocation.Builder createRequest(WebTarget target)

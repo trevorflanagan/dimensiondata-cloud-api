@@ -1,5 +1,6 @@
 package com.dimensiondata.cloud.client;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Filter
 
     public Param[] concatenateParameters(Param... otherParameters)
     {
-        List<Param> allParameters = Arrays.asList(otherParameters);
+        List<Param> allParameters = new ArrayList<>(Arrays.asList(otherParameters));
         allParameters.addAll(Arrays.asList(parameters));
         return allParameters.toArray(new Param[allParameters.size()]);
     }

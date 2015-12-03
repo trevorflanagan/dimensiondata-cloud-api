@@ -4,12 +4,9 @@ import com.dimensiondata.cloud.client.Filter;
 import com.dimensiondata.cloud.client.NetworkDomainService;
 import com.dimensiondata.cloud.client.OrderBy;
 import com.dimensiondata.cloud.client.Param;
-import com.dimensiondata.cloud.client.model.DeployNetworkDomainType;
-import com.dimensiondata.cloud.client.model.EditNetworkDomainType;
-import com.dimensiondata.cloud.client.model.NetworkDomainType;
-import com.dimensiondata.cloud.client.model.NetworkDomains;
+import com.dimensiondata.cloud.client.model.*;
 
-import javax.ws.rs.core.Response;
+import javax.ws.rs.client.Entity;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 import java.util.Arrays;
@@ -69,21 +66,26 @@ public class NetworkDomainServiceImpl implements NetworkDomainService
     }
 
     @Override
-    public Response deployNetworkDomain(DeployNetworkDomainType deployNetworkDomain)
+    public ResponseType deployNetworkDomain(DeployNetworkDomainType deployNetworkDomain)
     {
         return httpClient.post("network/deployNetworkDomain",
-                new JAXBElement<>(new QName("urn:didata.com:api:cloud:types", "deployNetworkDomain"), DeployNetworkDomainType.class, deployNetworkDomain));
+                new JAXBElement<>(new QName(HttpClient.DEFAULT_NAMESPACE, "deployNetworkDomain"), DeployNetworkDomainType.class, deployNetworkDomain),
+                ResponseType.class);
     }
 
     @Override
-    public Response editNetworkDomain(EditNetworkDomainType editNetworkDomain)
+    public ResponseType editNetworkDomain(EditNetworkDomainType editNetworkDomain)
     {
-        return null;  //TODO Implement this method
+        return httpClient.post("network/editNetworkDomain",
+                new JAXBElement<>(new QName(HttpClient.DEFAULT_NAMESPACE, "editNetworkDomain"), EditNetworkDomainType.class, editNetworkDomain),
+                ResponseType.class);
     }
 
     @Override
-    public Response deleteNetworkDomain(String id)
+    public ResponseType deleteNetworkDomain(String networkDomainId)
     {
-        return null;  //TODO Implement this method
+        return httpClient.post("network/deleteNetworkDomain",
+                Entity.xml("<deleteNetworkDomain xmlns=\"" + HttpClient.DEFAULT_NAMESPACE + "\" id=\"" + networkDomainId + "\"/>"),
+                ResponseType.class);
     }
 }
