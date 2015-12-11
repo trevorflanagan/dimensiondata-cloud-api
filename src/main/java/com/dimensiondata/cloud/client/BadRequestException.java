@@ -4,16 +4,16 @@ import com.dimensiondata.cloud.client.model.ResponseType;
 
 public class BadRequestException extends RuntimeException
 {
-    private final ResponseType responseType;
+    private final ResponseType response;
 
-    public BadRequestException(ResponseType responseType)
+    public BadRequestException(ResponseType response)
     {
-        super(responseType.getMessage());
-        this.responseType = responseType;
+        super(response.getMessage());
+        this.response = response;
     }
 
-    public ResponseType getResponseType()
+    public ResponseType getResponse()
     {
-        return responseType;
+        return response;
     }
 }

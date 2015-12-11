@@ -15,7 +15,7 @@ public class FirewallServiceDemo
 
         networkDomainService.listNetworkDomains(100, 1,OrderBy.EMPTY, Filter.EMPTY);
 
-        FirewallRules firewallRules = firewallService.listFirewallRules(100, 1, new OrderBy(), new Filter(
+        FirewallRules firewallRules = firewallService.listFirewallRules(100, 1, OrderBy.EMPTY, new Filter(
                 new Param(FirewallServiceImpl.PARAMETER_NETWORKDOMAIN_ID, "1c813510-216a-434d-bd07-226ee5424ca3")
         ));
         for (FirewallRuleType firewallRule : firewallRules.getFirewallRule())
