@@ -36,7 +36,7 @@ public class Filter
                 name = name.substring(0, name.lastIndexOf("."));
             }
 
-            if (!validNames.contains(name.toLowerCase()))
+            if (!validNames.contains(name))
             {
                 throw new IllegalArgumentException("Unknown Filter parameter: " + name);
             }
