@@ -6,14 +6,13 @@ import com.dimensiondata.cloud.client.Param;
 import com.dimensiondata.cloud.client.model.DatacenterType;
 import com.dimensiondata.cloud.client.model.Datacenters;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class DatacenterServiceImpl implements DatacenterService
 {
     public static final String PARAMETER_ID = "id";
-    public static final List<String> ORDER_BY_PARAMETERS = Collections.unmodifiableList(Arrays.asList(PARAMETER_ID));
+    public static final List<String> ORDER_BY_PARAMETERS = Collections.unmodifiableList(Collections.singletonList(PARAMETER_ID));
 
     private final HttpClient httpClient;
 
@@ -35,7 +34,6 @@ public class DatacenterServiceImpl implements DatacenterService
     @Override
     public DatacenterType getDatacenter(String id)
     {
-        Datacenters datacenters = httpClient.get("infrastructure/datacenter", Datacenters.class, new Param(PARAMETER_ID, id));
-        return datacenters.getDatacenter().size() > 0 ? datacenters.getDatacenter().get(0) : null;
+        return httpClient.get("infrastructure/datacenter/" + id, DatacenterType.class);
     }
 }

@@ -75,8 +75,7 @@ public class VlanServiceImpl implements VlanService
     @Override
     public VlanType getVlan(String id)
     {
-        Vlans vlans = httpClient.get("network/vlan", Vlans.class, new Param(PARAMETER_ID, id));
-        return vlans.getVlan().size() > 0 ? vlans.getVlan().get(0) : null;
+        return httpClient.get("network/vlan/" + id, VlanType.class);
     }
 
     @Override

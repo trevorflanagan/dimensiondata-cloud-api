@@ -61,8 +61,7 @@ public class NetworkDomainServiceImpl implements NetworkDomainService
     @Override
     public NetworkDomainType getNetworkDomain(String id)
     {
-        NetworkDomains networkDomains = httpClient.get("network/networkDomain", NetworkDomains.class, new Param(PARAMETER_ID, id));
-        return networkDomains.getNetworkDomain().size() > 0 ? networkDomains.getNetworkDomain().get(0) : null;
+        return httpClient.get("network/networkDomain/" + id, NetworkDomainType.class);
     }
 
     @Override
