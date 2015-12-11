@@ -6,6 +6,7 @@ import java.util.List;
 public class OrderBy
 {
     public static final String DESCENDING_SUFFIX = ".DESCENDING";
+    public static final OrderBy EMPTY = new OrderBy();
 
     private final String[] parameters;
 
