@@ -1,7 +1,9 @@
 package com.dimensiondata.cloud.client.http;
 
+import com.dimensiondata.cloud.client.BadRequestException;
 import com.dimensiondata.cloud.client.Param;
 import com.dimensiondata.cloud.client.UserSession;
+import com.dimensiondata.cloud.client.model.ResponseType;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 import javax.ws.rs.client.*;
@@ -50,7 +52,15 @@ public class HttpClient
 
     public static <T> T get(WebTarget baseTarget, String path, Map<String,List<String>> parameters, Class<T> responseType)
     {
-        return get(baseTarget, path, parameters).readEntity(responseType);
+        Response response = get(baseTarget, path, parameters);
+        if (response.getStatus() == 400)
+        {
+            throw new BadRequestException(response.readEntity(ResponseType.class));
+        }
+        else
+        {
+            return response.readEntity(responseType);
+        }
     }
 
     public static Response get(WebTarget baseTarget, String path, Map<String,List<String>> parameters)
@@ -96,7 +106,14 @@ public class HttpClient
 
         Response response = createRequest(target).post(payload);
         UserSession.setLastResponse(response);
-        return response.readEntity(responseType);
+        if (response.getStatus() == 400)
+        {
+            throw new BadRequestException(response.readEntity(ResponseType.class));
+        }
+        else
+        {
+            return response.readEntity(responseType);
+        }
     }
 
     public <T> T post(String path, JAXBElement jaxbElement, Class<T> responseType)
