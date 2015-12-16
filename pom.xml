@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>dimensiondata-cloud-api</name>
-    <url>https://github.com/svzdvd/dimensiondata-cloud-api</url>
+    <url>https://github.com/DimensionDataIreland/dimensiondata-cloud-api</url>
 
     <properties>
         <jdk.version>1.8</jdk.version>
