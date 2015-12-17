@@ -14,7 +14,7 @@
     <xs:element name="servers">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="Server" type="cloudapi:ServerType"/>
+                <xs:element name="server" type="cloudapi:ServerType" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
             <xs:attributeGroup ref="cloudapi:PagedResultAttributes"/>
         </xs:complexType>
@@ -25,8 +25,8 @@
             <xs:element name="name" type="xs:string"/>
             <xs:element name="description" type="xs:string" minOccurs="0"/>
             <xs:element name="operatingSystem" type="cloudapi:OperatingSystemType"/>
-            <xs:element name="cpuCount" type="xs:int"/>
-            <xs:element name="memoryGb" type="xs:int"/>
+            <xs:element name="cpu" type="cloudapi:CpuType"/>
+            <xs:element name="memoryGb" type="xs:unsignedInt"/>
             <xs:element name="disk" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:attribute name="id" type="xs:string" use="required"/>
@@ -79,12 +79,8 @@
             <xs:element name="started" type="xs:boolean"/>
             <xs:element name="state" type="xs:string"/>
             <xs:element name="progress" type="cloudapi:ProgressType" minOccurs="0"/>
-            <xs:element name="machineStatus" minOccurs="0" maxOccurs="unbounded">
-                <xs:complexType>
-                    <xs:attribute name="name" type="xs:string" use="required"/>
-                    <xs:attribute name="value" type="xs:string" use="required"/>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="vmwareTools" type="cloudapi:VmwareToolsType" minOccurs="0"/>
+            <xs:element name="virtualHardware" type="cloudapi:VirtualHardwareType" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:string" use="required"/>
         <xs:attribute name="datacenterId" type="xs:string" use="required"/>
@@ -109,6 +105,14 @@
             <xs:element name="imageId" type="xs:string"/>
             <xs:element name="start" type="xs:boolean"/>
             <xs:element name="administratorPassword" type="xs:string" minOccurs="0"/>
+            <xs:element name="cpu" minOccurs="0">
+                <xs:complexType>
+                    <xs:attribute name="speed" type="xs:string"/>
+                    <xs:attribute name="count" type="xs:unsignedInt"/>
+                    <xs:attribute name="coresPerSocket" type="xs:unsignedInt"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="memoryGb" type="xs:unsignedInt" minOccurs="0"/>
             <xs:choice>
                 <xs:element name="network">
                     <xs:complexType>
@@ -129,12 +133,15 @@
                     </xs:complexType>
                 </xs:element>
             </xs:choice>
+            <xs:element name="primaryDns" type="xs:string" minOccurs="0"/>
+            <xs:element name="secondaryDns" type="xs:string" minOccurs="0"/>
             <xs:element name="disk" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:attribute name="scsiId" type="xs:unsignedShort" use="required"/>
                     <xs:attribute name="speed" type="xs:string" use="required"/>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="microsoftTimeZone" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -204,7 +211,7 @@
 
     <xs:complexType name="AddLocalDiskType">
         <xs:sequence>
-            <xs:element name="sizeGb" type="xs:int" />
+            <xs:element name="sizeGb" type="xs:int"/>
             <xs:element name="speed" type="xs:string" minOccurs="0"/>
             <xs:element name="scsiId" type="xs:int" minOccurs="0"/>
         </xs:sequence>
@@ -212,5 +219,18 @@
     </xs:complexType>
 
     <xs:element name="addLocalDisk" type="cloudapi:AddLocalDiskType"/>
-    
+
+    <xs:element name="reconfigureServer" type="cloudapi:ReconfigureServerType"/>
+
+    <xs:complexType name="ReconfigureServerType">
+        <xs:sequence>
+            <xs:element name="memoryGb" type="xs:unsignedInt" minOccurs="0"/>
+            <xs:element name="cpuCount" type="xs:unsignedInt" minOccurs="0"/>
+            <xs:element name="cpuSpeed" type="xs:string" minOccurs="0"/>
+            <xs:element name="coresPerSocket" type="xs:unsignedInt" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="upgradeVirtualHardware" type="cloudapi:IdType"/>
 </xs:schema>
