@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SupportServiceImpl implements SupportService
+public class SupportServiceImpl extends AbstractRestfulService implements SupportService
 {
     public static final String PARAMETER_NETWORKDOMAIN_ID = "networkDomainId";
     public static final String PARAMETER_ID = "id";
@@ -63,11 +63,9 @@ public class SupportServiceImpl implements SupportService
             PARAMETER_VIRTUAL_LISTENER_PROTOCOl
             ));
 
-    private final HttpClient httpClient;
-
     public SupportServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

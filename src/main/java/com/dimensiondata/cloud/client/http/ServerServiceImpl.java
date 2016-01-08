@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class ServerServiceImpl implements ServerService
+public class ServerServiceImpl extends AbstractRestfulService implements ServerService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_DATACENTER_ID = "datacenterId";
@@ -75,11 +75,9 @@ public class ServerServiceImpl implements ServerService
             PARAMETER_CREATE_TIME
             ));
 
-    private final HttpClient httpClient;
-
     public ServerServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

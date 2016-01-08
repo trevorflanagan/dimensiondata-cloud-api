@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class NodeServiceImpl implements NodeService
+public class NodeServiceImpl extends AbstractRestfulService implements NodeService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_NETWORKDOMAIN_ID = "networkDomainId";
@@ -39,11 +39,9 @@ public class NodeServiceImpl implements NodeService
             PARAMETER_IPV4ADDRESS,
             PARAMETER_IPV6ADDRESS));
 
-    private final HttpClient httpClient;
-
     public NodeServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

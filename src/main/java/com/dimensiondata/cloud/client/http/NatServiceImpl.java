@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class NatServiceImpl implements NatService
+public class NatServiceImpl extends AbstractRestfulService implements NatService
 {
     public static final String PARAMETER_NETWORKDOMAIN_ID = "networkDomainId";
     public static final String PARAMETER_ID = "id";
@@ -41,11 +41,9 @@ public class NatServiceImpl implements NatService
             PARAMETER_EXTERNAL_IP,
             PARAMETER_NODE_ID));
 
-    private final HttpClient httpClient;
-
     public NatServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class IpAddressServiceImpl implements IpAddressService
+public class IpAddressServiceImpl extends AbstractRestfulService implements IpAddressService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_NETWORKDOMAIN_ID = "networkDomainId";
@@ -64,11 +64,10 @@ public class IpAddressServiceImpl implements IpAddressService
 
     public static final List<String> RESERVED_PRIVATE_FILTER_PARAMETERS = Collections.unmodifiableList(Collections.EMPTY_LIST);
 
-    private final HttpClient httpClient;
 
     public IpAddressServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override
