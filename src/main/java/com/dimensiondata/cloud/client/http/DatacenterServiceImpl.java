@@ -35,7 +35,8 @@ public class DatacenterServiceImpl implements DatacenterService
     @Override
     public DatacenterType getDatacenter(String id)
     {
-        return httpClient.get("infrastructure/datacenter/" + id, DatacenterType.class);
+        Datacenters datacenters = httpClient.get("infrastructure/datacenter", Datacenters.class, new Param(PARAMETER_ID, id));
+        return datacenters.getDatacenter().size() > 0 ? datacenters.getDatacenter().get(0) : null;
     }
 
     @Override
