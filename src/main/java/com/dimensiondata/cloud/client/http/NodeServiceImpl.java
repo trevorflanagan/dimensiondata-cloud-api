@@ -50,7 +50,7 @@ public class NodeServiceImpl implements NodeService
     public ResponseType createNode(CreateNodeType createNode)
     {
         return httpClient.post("networkDomainVip/createNode",
-                new JAXBElement<>(new QName(HttpClient.DEFAULT_NAMESPACE, "createNatRule"), CreateNodeType.class, createNode),
+                new JAXBElement<>(new QName(HttpClient.DEFAULT_NAMESPACE, "createNode"), CreateNodeType.class, createNode),
                 ResponseType.class);
     }
 

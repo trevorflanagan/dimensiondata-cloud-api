@@ -11,6 +11,7 @@ public class Filter
     public static final String LE_SUFFIX = ".LE";
     public static final String GT_SUFFIX = ".GT";
     public static final String LT_SUFFIX = ".LT";
+    public static final Filter EMPTY = new Filter();
 
     private final Param[] parameters;
 
