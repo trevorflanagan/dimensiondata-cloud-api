@@ -5,6 +5,7 @@ import com.dimensiondata.cloud.client.OrderBy;
 import com.dimensiondata.cloud.client.Param;
 import com.dimensiondata.cloud.client.model.DatacenterType;
 import com.dimensiondata.cloud.client.model.Datacenters;
+import com.dimensiondata.cloud.client.model.OperatingSystems;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,5 +36,15 @@ public class DatacenterServiceImpl implements DatacenterService
     public DatacenterType getDatacenter(String id)
     {
         return httpClient.get("infrastructure/datacenter/" + id, DatacenterType.class);
+    }
+
+    @Override
+    public OperatingSystems listOperatingSystems(int pageSize, int pageNumber, OrderBy orderBy)
+    {
+        // TODO validate parameters
+        return httpClient.get("infrastructure/operatingSystem", OperatingSystems.class,
+                new Param(Param.PAGE_SIZE, pageSize),
+                new Param(Param.PAGE_NUMBER, pageNumber),
+                new Param(Param.ORDER_BY, orderBy.concatenateParameters()));
     }
 }

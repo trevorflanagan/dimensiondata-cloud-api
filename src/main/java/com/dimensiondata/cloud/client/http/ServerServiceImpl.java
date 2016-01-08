@@ -40,9 +40,7 @@ public class ServerServiceImpl implements ServerService
             PARAMETER_CREATE_TIME,
             PARAMETER_STATE,
             PARAMETER_STARTED,
-            PARAMETER_OPERATING_SYSTEM_ID,
-            PARAMETER_IPV6,
-            PARAMETER_PRIVATE_IPV4
+            PARAMETER_OPERATING_SYSTEM_ID
             ));
 
     public static final List<String> FILTER_PARAMETERS = Collections.unmodifiableList(Arrays.asList(
@@ -52,9 +50,12 @@ public class ServerServiceImpl implements ServerService
             PARAMETER_NETWORK_ID,
             PARAMETER_VLAN_ID,
             PARAMETER_SOURCE_IMAGE_ID,
+            PARAMETER_DEPLOYED_ID,
             PARAMETER_NAME,
             PARAMETER_CREATE_TIME,
             PARAMETER_STATE,
+            PARAMETER_STARTED,
+            PARAMETER_OPERATING_SYSTEM_ID,
             PARAMETER_IPV6,
             PARAMETER_PRIVATE_IPV4
             ));
@@ -207,5 +208,21 @@ public class ServerServiceImpl implements ServerService
                         new Param(Param.PAGE_SIZE, pageSize),
                         new Param(Param.PAGE_NUMBER, pageNumber),
                         new Param(Param.ORDER_BY, orderBy.concatenateParameters())));
+    }
+
+    @Override
+    public ResponseType reconfigureServer(ReconfigureServerType reconfigureServer)
+    {
+        return httpClient.post("server/reconfigureServer",
+                new JAXBElement<>(new QName(HttpClient.DEFAULT_NAMESPACE, "reconfigureServer"), ReconfigureServerType.class, reconfigureServer),
+                ResponseType.class);
+    }
+
+    @Override
+    public ResponseType upgradeVirtualHardware(String id)
+    {
+        return httpClient.post("server/upgradeVirtualHardware",
+                Entity.xml("<upgradeVirtualHardware xmlns=\"" + HttpClient.DEFAULT_NAMESPACE + "\" id=\"" + id + "\"/>"),
+                ResponseType.class);
     }
 }

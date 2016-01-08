@@ -25,4 +25,8 @@ public interface Cloud
     SupportService support();
 
     VirtualListenerService virtualListener();
+
+    ImageService image();
+
+    SecurityGroupService securityGroup();
 }
