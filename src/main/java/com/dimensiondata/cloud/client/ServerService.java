@@ -33,4 +33,8 @@ public interface ServerService
     ResponseType cleanFailedServerDeployment(String id);
 
     AntiAffinityRules listAntiAffinityRules(int pageSize, int pageNumber, OrderBy orderBy, Filter filter);
+
+    ResponseType reconfigureServer(ReconfigureServerType reconfigureServer);
+
+    ResponseType upgradeVirtualHardware(String id);
 }

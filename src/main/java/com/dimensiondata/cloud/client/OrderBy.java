@@ -1,6 +1,9 @@
 package com.dimensiondata.cloud.client;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 public class OrderBy
@@ -8,6 +11,7 @@ public class OrderBy
     public static final String DESCENDING_SUFFIX = ".DESCENDING";
     public static final OrderBy EMPTY = new OrderBy();
 
+    private static final Logger logger = LoggerFactory.getLogger(Filter.class);
     private final String[] parameters;
 
     public OrderBy(String... parameters)
@@ -37,7 +41,7 @@ public class OrderBy
 
             if (!validNames.contains(parameter.toLowerCase()))
             {
-                throw new IllegalArgumentException("Unknown OrderBy parameter: " + parameter);
+                logger.warn("Unknown OrderBy parameter: " + parameter);
             }
         }
     }

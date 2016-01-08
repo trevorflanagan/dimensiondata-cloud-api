@@ -16,6 +16,8 @@ public class CloudImpl implements Cloud
     private final PoolService pool;
     private final SupportService support;
     private final VirtualListenerService virtualListener;
+    private final ImageService image;
+    private final SecurityGroupService securityGroup;
 
     public CloudImpl(String baseUrl)
     {
@@ -31,6 +33,8 @@ public class CloudImpl implements Cloud
         pool = new PoolServiceImpl(baseUrl);
         support = new SupportServiceImpl(baseUrl);
         virtualListener = new VirtualListenerServiceImpl(baseUrl);
+        image = new ImageServiceImpl(baseUrl);
+        securityGroup = new SecurityGroupServiceImpl(baseUrl);
     }
 
     @Override
@@ -103,5 +107,17 @@ public class CloudImpl implements Cloud
     public VirtualListenerService virtualListener()
     {
         return virtualListener;
+    }
+
+    @Override
+    public ImageService image()
+    {
+        return image;
+    }
+
+    @Override
+    public SecurityGroupService securityGroup()
+    {
+        return securityGroup;
     }
 }

@@ -130,4 +130,20 @@ public class IpAddressServiceImpl extends AbstractRestfulService implements IpAd
                         new Param(Param.PAGE_NUMBER, pageNumber),
                         new Param(Param.ORDER_BY, orderBy.concatenateParameters())));
     }
+
+    @Override
+    public ResponseType reservePrivateIpv4Address(ReservePrivateIpv4AddressType reservePrivateIpv4Address)
+    {
+        return httpClient.post("network/reservePrivateIpv4Address",
+                new JAXBElement<>(new QName(HttpClient.DEFAULT_NAMESPACE, "reservePrivateIpv4Address"), ReservePrivateIpv4AddressType.class, reservePrivateIpv4Address),
+                ResponseType.class);
+    }
+
+    @Override
+    public ResponseType reserveIpv6Address(ReserveIpv6AddressType reserveIpv6Address)
+    {
+        return httpClient.post("network/reserveIpv6Address",
+                new JAXBElement<>(new QName(HttpClient.DEFAULT_NAMESPACE, "reservePrivateIpv4Address"), ReserveIpv6AddressType.class, reserveIpv6Address),
+                ResponseType.class);
+    }
 }

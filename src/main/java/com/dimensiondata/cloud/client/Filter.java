@@ -1,5 +1,8 @@
 package com.dimensiondata.cloud.client;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +16,7 @@ public class Filter
     public static final String LT_SUFFIX = ".LT";
     public static final Filter EMPTY = new Filter();
 
+    private static final Logger logger = LoggerFactory.getLogger(Filter.class);
     private final Param[] parameters;
 
     public Filter(Param ... parameters)
@@ -39,7 +43,7 @@ public class Filter
 
             if (!validNames.contains(name))
             {
-                throw new IllegalArgumentException("Unknown Filter parameter: " + name);
+                logger.warn("Unknown Filter parameter: " + name);
             }
         }
     }
