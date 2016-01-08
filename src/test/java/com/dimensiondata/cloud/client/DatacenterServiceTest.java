@@ -13,7 +13,7 @@ public class DatacenterServiceTest extends AbstractServiceTest
     public void testList()
     {
         DatacenterService datacenterService = new DatacenterServiceImpl(getBaseUrl());
-        List<DatacenterType> datacenters = datacenterService.listDatacenters(10, 1, new OrderBy()).getDatacenter();
+        List<DatacenterType> datacenters = datacenterService.listDatacenters(10, 1, OrderBy.EMPTY).getDatacenter();
         Assert.assertEquals(3, datacenters.size());
         Assert.assertEquals("DEV_NA1", datacenters.get(0).getId());
         Assert.assertEquals("DEV_NA3", datacenters.get(1).getId());

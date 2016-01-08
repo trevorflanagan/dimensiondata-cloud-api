@@ -37,7 +37,8 @@
 
     <xs:complexType name="HypervisorType">
         <xs:sequence>
-            <xs:element name="diskSpeed" type="cloudapi:DiskSpeedType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="diskSpeed" type="cloudapi:DiskSpeedType" maxOccurs="unbounded"/>
+            <xs:element name="cpuSpeed" type="cloudapi:CpuSpeedType" maxOccurs="unbounded"/>
             <xs:element name="property" type="cloudapi:PropertyType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="type" type="xs:string" use="required"/>
@@ -48,6 +49,17 @@
         <xs:sequence>
             <xs:element name="displayName" type="xs:string"/>
             <xs:element name="abbreviation" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="unavailableReason" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="default" type="xs:boolean" use="required"/>
+        <xs:attribute name="available" type="xs:boolean" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="CpuSpeedType">
+        <xs:sequence>
+            <xs:element name="displayName" type="xs:string"/>
             <xs:element name="description" type="xs:string"/>
             <xs:element name="unavailableReason" type="xs:string" minOccurs="0"/>
         </xs:sequence>

@@ -35,6 +35,7 @@
             </xs:element>
         </xs:choice>
     </xs:complexType>
+
     <xs:complexType name="AntiAffinityRuleType">
         <xs:sequence>
             <xs:element name="serverSummary" minOccurs="2" maxOccurs="unbounded">
@@ -53,6 +54,7 @@
         <xs:attribute name="created" type="xs:dateTime" use="required"/>
         <xs:attribute name="datacenterId" type="xs:string" use="required"/>
     </xs:complexType>
+
     <xs:element name="antiAffinityRules">
         <xs:complexType>
             <xs:sequence>

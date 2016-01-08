@@ -13,7 +13,7 @@ public class FirewallServiceDemo
         NetworkDomainService networkDomainService = new NetworkDomainServiceImpl("http://localhost:8081/oec");
         FirewallService firewallService = new FirewallServiceImpl("http://localhost:8081/oec");
 
-        networkDomainService.listNetworkDomains(100, 1,OrderBy.EMPTY, Filter.EMPTY);
+        networkDomainService.listNetworkDomains(100, 1, OrderBy.EMPTY, Filter.EMPTY);
 
         FirewallRules firewallRules = firewallService.listFirewallRules(100, 1, OrderBy.EMPTY, new Filter(
                 new Param(FirewallServiceImpl.PARAMETER_NETWORKDOMAIN_ID, "1c813510-216a-434d-bd07-226ee5424ca3")

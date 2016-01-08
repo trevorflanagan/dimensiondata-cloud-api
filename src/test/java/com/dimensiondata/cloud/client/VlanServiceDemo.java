@@ -35,7 +35,7 @@ public class VlanServiceDemo
         response = vlanService.editVlan(editVlan);
         System.out.println(response.getMessage());
 
-        vlans = vlanService.listVlans(10, 1, new OrderBy(), new Filter()).getVlan();
+        vlans = vlanService.listVlans(10, 1, OrderBy.EMPTY, Filter.EMPTY).getVlan();
         for (VlanType v : vlans)
         {
             System.out.println(v.getId() + "=" + v.getName());
