@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class FirewallServiceImpl implements FirewallService
+public class FirewallServiceImpl extends AbstractRestfulService implements FirewallService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_NETWORKDOMAIN_ID = "networkDomainId";
@@ -32,11 +32,9 @@ public class FirewallServiceImpl implements FirewallService
             PARAMETER_CREATE_TIME,
             PARAMETER_STATE));
 
-    private final HttpClient httpClient;
-
     public FirewallServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

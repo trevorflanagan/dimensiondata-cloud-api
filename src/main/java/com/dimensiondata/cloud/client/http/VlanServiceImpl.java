@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class VlanServiceImpl implements VlanService
+public class VlanServiceImpl extends AbstractRestfulService implements VlanService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_NETWORK_DOMAIN_ID = "networkDomainId";
@@ -44,11 +44,10 @@ public class VlanServiceImpl implements VlanService
             PARAMETER_STATE,
             PARAMETER_CREATE_TIME));
 
-    private final HttpClient httpClient;
 
     public VlanServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

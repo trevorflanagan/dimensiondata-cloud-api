@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class NetworkDomainServiceImpl implements NetworkDomainService
+public class NetworkDomainServiceImpl extends AbstractRestfulService implements NetworkDomainService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_DATACENTER_ID = "datacenterId";
@@ -38,11 +38,9 @@ public class NetworkDomainServiceImpl implements NetworkDomainService
             PARAMETER_STATE,
             PARAMETER_CREATE_TIME));
 
-    private final HttpClient httpClient;
-
     public NetworkDomainServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

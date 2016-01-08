@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class VirtualListenerServiceImpl implements VirtualListenerService
+public class VirtualListenerServiceImpl extends AbstractRestfulService implements VirtualListenerService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_NETWORKDOMAIN_ID = "networkDomainId";
@@ -55,11 +55,9 @@ public class VirtualListenerServiceImpl implements VirtualListenerService
             PARAMETER_FALLBACK_PERSISTENCE_PROFILE_ID
             ));
 
-    private final HttpClient httpClient;
-
     public VirtualListenerServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

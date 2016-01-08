@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PoolServiceImpl implements PoolService
+public class PoolServiceImpl extends AbstractRestfulService implements PoolService
 {
     public static final String PARAMETER_ID = "id";
     public static final String PARAMETER_NETWORKDOMAIN_ID = "networkDomainId";
@@ -72,11 +72,10 @@ public class PoolServiceImpl implements PoolService
             PARAMETER_STATE,
             PARAMETER_CREATE_TIME));
 
-    private final HttpClient httpClient;
 
     public PoolServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

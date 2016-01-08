@@ -9,16 +9,15 @@ import com.dimensiondata.cloud.client.model.Datacenters;
 import java.util.Collections;
 import java.util.List;
 
-public class DatacenterServiceImpl implements DatacenterService
+public class DatacenterServiceImpl extends AbstractRestfulService implements DatacenterService
 {
     public static final String PARAMETER_ID = "id";
     public static final List<String> ORDER_BY_PARAMETERS = Collections.unmodifiableList(Collections.singletonList(PARAMETER_ID));
 
-    private final HttpClient httpClient;
 
     public DatacenterServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override

@@ -9,13 +9,12 @@ import javax.ws.rs.client.Entity;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 
-public class MonitoringServiceImpl implements MonitoringService
+public class MonitoringServiceImpl extends AbstractRestfulService implements MonitoringService
 {
-    private final HttpClient httpClient;
 
     public MonitoringServiceImpl(String baseUrl)
     {
-        httpClient = new HttpClient(baseUrl);
+        super(baseUrl);
     }
 
     @Override
